@@ -1,4 +1,4 @@
-package com.simensohol.simpleapp.navigation;
+package com.simensohol.simpleapp.gui.navigation;
 
 
 import android.app.ActionBar;

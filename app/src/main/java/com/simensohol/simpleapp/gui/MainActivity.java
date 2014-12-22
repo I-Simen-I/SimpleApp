@@ -1,4 +1,4 @@
-package com.simensohol.simpleapp;
+package com.simensohol.simpleapp.gui;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -8,9 +8,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import com.simensohol.simpleapp.navigation.NavigationDrawerFragment;
-import com.simensohol.simpleapp.pages.FirstPage;
-import com.simensohol.simpleapp.pages.SecondPage;
+import com.simensohol.simpleapp.R;
+import com.simensohol.simpleapp.gui.navigation.NavigationDrawerFragment;
+import com.simensohol.simpleapp.gui.pages.FirstPage;
+import com.simensohol.simpleapp.gui.pages.SecondPage;
 
 
 public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -43,12 +44,12 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         switch (position) {
             case FIRST_PAGE - 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, FirstPage.newInstance(FIRST_PAGE))
+                        .replace(R.id.container, FirstPage.newInstance(FIRST_PAGE, getApplicationContext()))
                         .commit();
                 break;
             case SECOND_PAGE - 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, SecondPage.newInstance(SECOND_PAGE))
+                        .replace(R.id.container, SecondPage.newInstance(SECOND_PAGE, getApplicationContext()))
                         .commit();
                 break;
         }

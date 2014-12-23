@@ -44,12 +44,12 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         switch (position) {
             case FIRST_PAGE - 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, FirstPage.newInstance(FIRST_PAGE, getApplicationContext()))
+                        .replace(R.id.container, FirstPage.newInstance(FIRST_PAGE))
                         .commit();
                 break;
             case SECOND_PAGE - 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, SecondPage.newInstance(SECOND_PAGE, getApplicationContext()))
+                        .replace(R.id.container, SecondPage.newInstance(SECOND_PAGE))
                         .commit();
                 break;
         }

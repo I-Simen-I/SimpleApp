@@ -66,15 +66,15 @@ public class FirstPage extends Fragment implements View.OnClickListener {
     }
 
     private void save() {
-        int id = (int) (Math.random() * 100000) + 1;
-
         ObjectToSave objectToSave = new ObjectToSave();
-        objectToSave.setId(id);
         objectToSave.setName(editText.getText().toString());
 
-        simpleAppDAO.save(objectToSave);
+        if (objectToSave.getName().length() > 0) {
+            simpleAppDAO.save(objectToSave);
+            showMessage(getString(R.string.txtSaved));
+            editText.setText(R.string.txtEmptyString);
+        }
 
-        showMessage("Saved");
     }
 
     private void showMessage(String message) {

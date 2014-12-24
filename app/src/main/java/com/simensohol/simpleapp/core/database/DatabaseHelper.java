@@ -9,27 +9,27 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "simpleApp_DB";
-    private String createTable;
+    private static final int DATABASE_VERSION = 1;
 
-    public DatabaseHelper(Context context, String createTable) {
-        super(context, DATABASE_NAME, null, 1);
-        setCreateTable(createTable);
+    public static final String TABLE = "simpleapp";
+    public static final String ID_COLUMN = "_id";
+    public static final String NAME_COLUMN = "name";
+    public static final String CREATE_TABLE = "CREATE TABLE " +
+            TABLE + " (" +
+            ID_COLUMN + " integer primary key autoincrement, " +
+            NAME_COLUMN + " varchar(255) not null);";
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(getCreateTable());
+        db.execSQL(CREATE_TABLE);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    }
-
-    //Setter & Getter
-    private void setCreateTable(String createTable) {
-        this.createTable = createTable;
-    }
-
-    private String getCreateTable() {
-        return createTable;
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE);
+        onCreate(db);
     }
 }

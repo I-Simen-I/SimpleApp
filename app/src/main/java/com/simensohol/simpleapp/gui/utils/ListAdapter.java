@@ -37,7 +37,7 @@ public class ListAdapter extends ArrayAdapter<ObjectToSave> {
 
         TextView name = (TextView) convertView.findViewById(R.id.txtName);
 
-        name.setText(item.getName());
+        name.setText(item.getId() + ": " + item.getName());
 
         return convertView;
     }

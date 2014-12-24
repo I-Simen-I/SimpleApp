@@ -77,7 +77,7 @@ public class SecondPage extends Fragment implements View.OnClickListener {
         simpleAppDAO.deleteAll();
         populateList();
 
-        showMessage("Empty");
+        showMessage(getString(R.string.txtEmpty));
     }
 
     private void showMessage(String message) {

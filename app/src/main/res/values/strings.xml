@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- App text -->
     <string name="app_name">SimpleApp</string>
     <string name="title_section1">Page 1</string>
     <string name="title_section2">Page 2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
-    <string name="action_settings">Settings</string>
+
+
+    <!-- Button text -->
     <string name="buttonEmpty">Empty database</string>
     <string name="buttonSave">Save name</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Message -->
+    <string name="txtEmptyString"></string>
+    <string name="txtSaved">Saved</string>
+    <string name="txtEmpty">Empty</string>
+    <string name="txtSettings">Settings</string>
+    <string name="txtExample">Example action</string>
 
 </resources>

@@ -4,14 +4,14 @@ package com.simensohol.simpleapp.core.entity;
  * @author Simen Søhol
  */
 public class ObjectToSave {
-    private int id;
+    private long id;
     private String name;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

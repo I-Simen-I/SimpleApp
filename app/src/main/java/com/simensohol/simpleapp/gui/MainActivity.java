@@ -108,7 +108,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "SETTINGS", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.txtSettings), Toast.LENGTH_SHORT).show();
             return true;
         }
 

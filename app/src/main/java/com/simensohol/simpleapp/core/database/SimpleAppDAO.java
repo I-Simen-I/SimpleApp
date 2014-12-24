@@ -10,42 +10,32 @@ import com.simensohol.simpleapp.core.entity.ObjectToSave;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.simensohol.simpleapp.core.database.DatabaseHelper.*;
+
 /**
  * @author Simen Søhol
  */
 public class SimpleAppDAO {
-    private static final String ID_COLUMN = "id";
-    private static final String NAME_COLUMN = "name";
-    private static final String TABLE = "simpleapp";
-    private static final String CREATE_TABLE = "CREATE TABLE " +
-            TABLE + " (" +
-            ID_COLUMN + " int, " +
-            NAME_COLUMN + " varchar(255));";
 
     private DatabaseHelper dbHelper;
     private SQLiteDatabase db;
+    private String[] allColumns = {ID_COLUMN, NAME_COLUMN};
 
     public SimpleAppDAO(Context context) {
         if (dbHelper == null) {
-            dbHelper = new DatabaseHelper(context, CREATE_TABLE);
+            dbHelper = new DatabaseHelper(context);
         }
     }
 
     public List<ObjectToSave> getAll() {
         List<ObjectToSave> objectToSaveList = new ArrayList<ObjectToSave>();
-        ObjectToSave objectToSave;
         open(false);
 
-        Cursor cursor = db.query(TABLE, new String[]{ID_COLUMN, NAME_COLUMN}, null, null, null, null, null);
+        Cursor cursor = db.query(TABLE, allColumns, null, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0 && cursor.moveToFirst()) {
             do {
-                objectToSave = new ObjectToSave();
-
-                objectToSave.setId(cursor.getInt(cursor.getColumnIndex(ID_COLUMN)));
-                objectToSave.setName(cursor.getString(cursor.getColumnIndex(NAME_COLUMN)));
-
-                objectToSaveList.add(objectToSave);
+                objectToSaveList.add(cursorToObject(cursor));
             } while (cursor.moveToNext());
         }
         close();
@@ -53,14 +43,31 @@ public class SimpleAppDAO {
         return objectToSaveList;
     }
 
-    public void save(ObjectToSave objectToSave) {
-        ContentValues value = new ContentValues();
-        value.put(ID_COLUMN, objectToSave.getId());
-        value.put(NAME_COLUMN, objectToSave.getName());
+    public ObjectToSave save(ObjectToSave objectToSave) {
+        ContentValues values = new ContentValues();
+
+        values.put(NAME_COLUMN, objectToSave.getName());
 
         open(false);
-        db.insert(TABLE, null, value);
+        long insertId = db.insert(TABLE, null, values);
+
+        Cursor cursor = db.query(TABLE, allColumns, ID_COLUMN + " = " + insertId, null, null, null, null);
+        cursor.moveToFirst();
+
+        ObjectToSave savedObject = cursorToObject(cursor);
+
+        cursor.close();
         close();
+
+        return savedObject;
+    }
+
+    private ObjectToSave cursorToObject(Cursor cursor) {
+        ObjectToSave objectToSave = new ObjectToSave();
+        objectToSave.setId(cursor.getInt(cursor.getColumnIndex(ID_COLUMN)));
+        objectToSave.setName(cursor.getString(cursor.getColumnIndex(NAME_COLUMN)));
+
+        return objectToSave;
     }
 
     public int deleteAll() {

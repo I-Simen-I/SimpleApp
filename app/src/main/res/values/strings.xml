@@ -2,8 +2,10 @@
 <resources>
     <!-- App text -->
     <string name="app_name">SimpleApp</string>
-    <string name="title_section1">Page 1</string>
-    <string name="title_section2">Page 2</string>
+    <string name="title_section1">SQLLite Write</string>
+    <string name="title_section2">SQLLite Read</string>
+    <string name="title_section3">Firebase Write</string>
+    <string name="title_section4">Firebase Read</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

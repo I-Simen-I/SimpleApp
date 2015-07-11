@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import com.simensohol.simpleapp.R;
 import com.simensohol.simpleapp.gui.navigation.NavigationDrawerFragment;
+import com.simensohol.simpleapp.gui.pages.FirebaseSavePage;
 import com.simensohol.simpleapp.gui.pages.FirstPage;
 import com.simensohol.simpleapp.gui.pages.SecondPage;
 
@@ -18,6 +19,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
     private static final int FIRST_PAGE = 1;
     private static final int SECOND_PAGE = 2;
+    private static final int THIRD_PAGE = 3;
     private NavigationDrawerFragment navigationDrawer;
     private CharSequence pageTitle;
 
@@ -52,6 +54,11 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                         .replace(R.id.container, SecondPage.newInstance(SECOND_PAGE))
                         .commit();
                 break;
+            case THIRD_PAGE - 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, FirebaseSavePage.newInstance(THIRD_PAGE))
+                        .commit();
+                break;
         }
     }
 
@@ -62,6 +69,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 break;
             case SECOND_PAGE:
                 pageTitle = getString(R.string.title_section2);
+                break;
+            case THIRD_PAGE:
+                pageTitle = getString(R.string.title_section3);
                 break;
         }
     }
